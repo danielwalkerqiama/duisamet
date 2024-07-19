@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>D3 Blues Color Scheme Example</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <svg width="500" height="500"></svg>
+  <script>
+    const svg = d3.select("svg");
+
+    // Example data
+    const data = [10, 20, 30, 40, 50];
+    
+    // Create a color scale using the 'Blues' color scheme
+    const color = d3.scaleSequential(d3.interpolateBlues)
+      .domain([0, d3.max(data)]);
+    
+    // Create circles (or any other shapes) with the color scheme
+    svg.selectAll("circle")
+       .data(data)
+       .enter()
+       .append("circle")
+       .attr("cx", (d, i) => (i + 1) * 80)
+       .attr("cy", 100)
+       .attr("r", d => d)
+       .attr("fill", d => color(d));
+  </script>
+</body>
+</html>
